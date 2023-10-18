@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "ShopAdvisor Widget Injector",
+  "author": "Howard Gil",
+  "short_name": "ShopAdvisor Widget",
+  "description": "Adds ShopAdvisor widget to your e-commerce site",
+  "version": "1.0",
+  "browser_action": {
+    "default_title": "ShopAdvisor Widget Injector"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": ["storage", "tabs", "http://*/", "https://*/"]
+}
