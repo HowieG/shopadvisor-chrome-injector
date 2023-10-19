@@ -1,4 +1,17 @@
 let allowedSites = [];
+let devMode = false;
+
+// Load initial state
+chrome.storage.sync.get('devMode', (data) => {
+	devMode = data.devMode || false;
+});
+
+// Listen for changes
+chrome.storage.onChanged.addListener((changes) => {
+	if ('devMode' in changes) {
+		devMode = changes.devMode.newValue;
+	}
+});
 
 // Load config
 fetch('config.json')
