@@ -1,7 +1,7 @@
 let devMode = false;
 
-// Load initial state
-chrome.storage.sync.get('devMode', (data) => {
+// Load initial state using Promises
+chrome.storage.sync.get('devMode').then((data) => {
 	devMode = data.devMode || false;
 });
 
@@ -12,8 +12,16 @@ chrome.storage.onChanged.addListener((changes) => {
 	}
 });
 
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	if (changeInfo.status === 'complete') {
-		chrome.tabs.executeScript(tabId, { file: 'shopadvisor-injector.js' });
+		fetch('https://shopadvisor-embeddable-widget.vercel.app/index.js')
+			.then(response => response.text())
+			.then(scriptCode => {
+				chrome.scripting.executeScript({
+					target: { tabId: tabId },
+					function: new Function(scriptCode)
+				});
+			});
+
 	}
 });

@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Try ShopAdvisor",
   "author": "Howard Gil",
   "short_name": "Try ShopAdvisor",
@@ -8,19 +8,25 @@
   "icons": {
     "128": "ShopAdvisor Icon.png"
   },
-  "browser_action": {
-    "default_title": "Try ShopAdvisor"
+  "action": {
+    "default_title": "Try ShopAdvisor",
+    "default_icon": {
+      "128": "ShopAdvisor Icon.png"
+    }
   },
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
   "options_page": "options.html",
-  "permissions": [
-    "storage",
-    "tabs",
-    "*://*.hivebrands.com/*",
-    "*://*.getbezel.com/*",
-    "*://*.shortylove.com/*",
-    "*://*.eightsleep.com/*"
+  "permissions": ["storage", "scripting", "tabs"],
+  "host_permissions": [
+    "http://*.hivebrands.com/*",
+    "https://*.hivebrands.com/*",
+    "http://*.getbezel.com/*",
+    "https://*.getbezel.com/*",
+    "http://*.shortylove.com/*",
+    "https://*.shortylove.com/*",
+    "http://*.eightsleep.com/*",
+    "https://*.eightsleep.com/*"
   ]
 }
