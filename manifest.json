@@ -1,32 +1,47 @@
 {
   "manifest_version": 3,
-  "name": "Try ShopAdvisor",
+  "name": "ShopAdvisor",
   "author": "Howard Gil",
-  "short_name": "Try ShopAdvisor",
+  "short_name": "ShopAdvisor",
   "description": "Adds ShopAdvisor widget to your e-commerce site",
   "version": "1.0",
   "icons": {
     "128": "ShopAdvisor Icon.png"
   },
   "action": {
-    "default_title": "Try ShopAdvisor",
+    "default_title": "ShopAdvisor",
     "default_icon": {
       "128": "ShopAdvisor Icon.png"
     }
   },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "options_page": "options.html",
-  "permissions": ["storage", "scripting", "tabs"],
-  "host_permissions": [
-    "http://*.hivebrands.com/*",
-    "https://*.hivebrands.com/*",
-    "http://*.getbezel.com/*",
-    "https://*.getbezel.com/*",
-    "http://*.shortylove.com/*",
-    "https://*.shortylove.com/*",
-    "http://*.eightsleep.com/*",
-    "https://*.eightsleep.com/*"
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.hivebrands.com/*",
+        "https://*.hivebrands.com/*",
+        "http://*.getbezel.com/*",
+        "https://*.getbezel.com/*",
+        "http://*.shortylove.com/*",
+        "https://*.shortylove.com/*",
+        "http://*.eightsleep.com/*",
+        "https://*.eightsleep.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["index.js"],
+      "matches": [
+        "http://*.hivebrands.com/*",
+        "https://*.hivebrands.com/*",
+        "http://*.getbezel.com/*",
+        "https://*.getbezel.com/*",
+        "http://*.shortylove.com/*",
+        "https://*.shortylove.com/*",
+        "http://*.eightsleep.com/*",
+        "https://*.eightsleep.com/*"
+      ]
+    }
   ]
 }
